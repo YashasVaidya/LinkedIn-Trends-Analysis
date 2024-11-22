@@ -1,12 +1,15 @@
 import pandas as pd
 
 def clean_data(df):
-    # Placeholder for data cleaning logic
-    # Example: Remove rows with missing values
+    # Remove rows with missing values
     df.dropna(inplace=True)
     
-    # Example: Convert date column to datetime format
-    # df['Post Date'] = pd.to_datetime(df['Post Date'])
+    # Convert date column to datetime format
+    df['Post Date'] = pd.to_datetime(df['Post Date'], errors='coerce')
+    
+    # Convert reactions and comments to integers
+    df['Reactions'] = df['Reactions'].astype(int)
+    df['Comments'] = df['Comments'].astype(int)
     
     return df
 
